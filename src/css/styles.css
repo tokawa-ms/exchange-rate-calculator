@@ -1,0 +1,120 @@
+/* カスタムスタイル */
+
+/* スムーズなアニメーション */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* モバイルファーストの調整 */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+}
+
+/* 入力フィールドのフォーカス時の強調 */
+input:focus {
+    transform: scale(1.02);
+}
+
+/* ボタンのホバー効果 */
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* 設定パネルのスライドアニメーション */
+#settingsContent {
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    overflow: hidden;
+}
+
+#settingsContent.collapsed {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* 通貨入力フィールドの色分け */
+#baseAmount {
+    border-left: 4px solid #3B82F6; /* blue-500 */
+}
+
+#target1Amount {
+    border-left: 4px solid #10B981; /* green-500 */
+}
+
+#target2Amount {
+    border-left: 4px solid #8B5CF6; /* purple-500 */
+}
+
+/* レスポンシブ調整 */
+@media (max-width: 320px) {
+    .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    input[type="number"] {
+        font-size: 16px; /* iOS Safari のズーム防止 */
+    }
+}
+
+/* 数値入力時のスピナー非表示（モバイル向け） */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* アクセシビリティ向上 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* エラーメッセージのスタイル */
+.error-message {
+    color: #DC2626;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* 成功メッセージのスタイル */
+.success-message {
+    color: #059669;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* ローディング表示 */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* 高コントラストモード対応 */
+@media (prefers-contrast: high) {
+    .bg-gray-50 {
+        background-color: #ffffff;
+        border: 1px solid #000000;
+    }
+    
+    .text-gray-600 {
+        color: #000000;
+    }
+    
+    .text-gray-500 {
+        color: #333333;
+    }
+}
