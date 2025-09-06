@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="72" height="72" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="72" height="72" fill="#3b82f6" rx="7.2"/>
+  
+  <!-- 通貨記号（¥とUSD） -->
+  <g fill="white" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">
+    <!-- ¥記号 -->
+    <text x="21.6" y="28.8" font-size="18">¥</text>
+    
+    <!-- 矢印 -->
+    <path d="M 28.8 36 L 43.2 36" stroke="white" stroke-width="2.16" marker-end="url(#arrowhead)"/>
+    
+    <!-- 矢印の先端 -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="white" />
+      </marker>
+    </defs>
+    
+    <!-- $記号 -->
+    <text x="50.4" y="28.8" font-size="18">$</text>
+    
+    <!-- 計算機アイコン -->
+    <rect x="14.4" y="39.6" width="43.2" height="25.2" fill="white" rx="3.6"/>
+    <rect x="18" y="43.2" width="36" height="10.8" fill="#3b82f6"/>
+    
+    <!-- ボタン -->
+    <circle cx="25.2" cy="57.6" r="2.16" fill="#3b82f6"/>
+    <circle cx="36" cy="57.6" r="2.16" fill="#3b82f6"/>
+    <circle cx="46.8" cy="57.6" r="2.16" fill="#3b82f6"/>
+  </g>
+</svg>
