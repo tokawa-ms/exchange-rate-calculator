@@ -19,6 +19,9 @@ class ExchangeRateCalculator {
         // 現在の設定
         this.settings = {};
         
+        // 初期化フラグ（初回読み込み時の自動折りたたみ判定用）
+        this.isInitialLoad = true;
+        
         // DOM要素への参照
         this.elements = {
             // 設定関連
@@ -318,6 +321,12 @@ class ExchangeRateCalculator {
             this.elements.target1CurrencyLabel.textContent = this.settings.targetCurrency1;
             this.elements.target2CurrencyLabel.textContent = this.settings.targetCurrency2;
             
+            // 初期化時で設定が完了している場合、設定パネルを自動折りたたみ
+            if (this.isInitialLoad) {
+                this.collapseSettingsPanel();
+                console.log('ExchangeRateCalculator: 初期化時に設定パネルを自動折りたたみ');
+            }
+            
             console.log('ExchangeRateCalculator: 変換機能を有効化');
         } else {
             // セットアップ必須メッセージを表示
@@ -326,6 +335,9 @@ class ExchangeRateCalculator {
             
             console.log('ExchangeRateCalculator: 設定が不完全なため変換機能を無効化');
         }
+        
+        // 初期化フラグをリセット
+        this.isInitialLoad = false;
     }
     
     /**
@@ -359,6 +371,20 @@ class ExchangeRateCalculator {
             arrow.style.transform = 'rotate(0deg)';
             console.log('ExchangeRateCalculator: 設定パネル折りたたみ');
         }
+    }
+    
+    /**
+     * 設定パネルを折りたたむ（初期化時の自動折りたたみ用）
+     */
+    collapseSettingsPanel() {
+        console.log('ExchangeRateCalculator: 設定パネル自動折りたたみ');
+        
+        const content = this.elements.settingsContent;
+        const arrow = this.elements.settingsArrow;
+        
+        // 折りたたむ
+        content.classList.add('collapsed');
+        arrow.style.transform = 'rotate(0deg)';
     }
     
     /**
