@@ -454,4 +454,146 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('DOMContentLoaded: アプリケーション初期化開始');
     calculator = new ExchangeRateCalculator();
     console.log('DOMContentLoaded: アプリケーション初期化完了');
+    
+    // Service Worker の登録（PWA機能）
+    registerServiceWorker();
 });
+
+/**
+ * Service Worker の登録
+ * PWA機能を有効にするために必要
+ */
+function registerServiceWorker() {
+    console.log('registerServiceWorker: Service Worker登録開始');
+    
+    // Service Workerがサポートされているかチェック
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('./sw.js')
+                .then(function(registration) {
+                    console.log('Service Worker: 登録成功', registration.scope);
+                    
+                    // 更新があった場合の処理
+                    registration.addEventListener('updatefound', function() {
+                        console.log('Service Worker: 新しいバージョンが利用可能');
+                        const newWorker = registration.installing;
+                        
+                        if (newWorker) {
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('Service Worker: 新しいバージョンがインストール済み');
+                                    // ユーザーに更新を通知（オプション）
+                                    showUpdateAvailable();
+                                }
+                            });
+                        }
+                    });
+                })
+                .catch(function(error) {
+                    console.error('Service Worker: 登録失敗', error);
+                });
+        });
+    } else {
+        console.log('Service Worker: このブラウザではサポートされていません');
+    }
+}
+
+/**
+ * PWAインストール促進機能
+ */
+let deferredPrompt;
+
+// PWAインストールプロンプトの準備
+window.addEventListener('beforeinstallprompt', function(e) {
+    console.log('PWA: インストールプロンプト準備完了');
+    
+    // デフォルトのプロンプトを防ぐ
+    e.preventDefault();
+    
+    // 後でプロンプトを表示するために保存
+    deferredPrompt = e;
+    
+    // インストールボタンを表示（オプション）
+    showInstallButton();
+});
+
+/**
+ * アプリが正常にインストールされた後の処理
+ */
+window.addEventListener('appinstalled', function(e) {
+    console.log('PWA: アプリケーションがインストールされました', e);
+    
+    // インストールボタンを隠す
+    hideInstallButton();
+    
+    // インストール完了のメッセージを表示
+    if (calculator) {
+        calculator.showSuccess('アプリがホーム画面に追加されました！');
+    }
+});
+
+/**
+ * Service Worker更新通知の表示
+ */
+function showUpdateAvailable() {
+    console.log('showUpdateAvailable: 更新通知表示');
+    
+    if (confirm('新しいバージョンが利用可能です。ページを更新しますか？')) {
+        window.location.reload();
+    }
+}
+
+/**
+ * インストールボタンの表示
+ */
+function showInstallButton() {
+    console.log('showInstallButton: インストールボタン表示');
+    
+    // 簡易的なインストール促進（実際のUIでは、より良いデザインを使用）
+    const installButton = document.createElement('button');
+    installButton.id = 'installButton';
+    installButton.textContent = 'ホーム画面に追加';
+    installButton.className = 'fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors duration-200 z-50';
+    installButton.onclick = function() {
+        installPWA();
+    };
+    
+    document.body.appendChild(installButton);
+}
+
+/**
+ * インストールボタンの非表示
+ */
+function hideInstallButton() {
+    console.log('hideInstallButton: インストールボタン非表示');
+    
+    const installButton = document.getElementById('installButton');
+    if (installButton) {
+        installButton.remove();
+    }
+}
+
+/**
+ * PWAインストール実行
+ */
+function installPWA() {
+    console.log('installPWA: PWAインストール実行');
+    
+    if (deferredPrompt) {
+        // インストールプロンプトを表示
+        deferredPrompt.prompt();
+        
+        // ユーザーの選択を取得
+        deferredPrompt.userChoice.then(function(choiceResult) {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('PWA: ユーザーがインストールを承認');
+            } else {
+                console.log('PWA: ユーザーがインストールを拒否');
+            }
+            
+            // プロンプトをクリア
+            deferredPrompt = null;
+            hideInstallButton();
+        });
+    }
+}
