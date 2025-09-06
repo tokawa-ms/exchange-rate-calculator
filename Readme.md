@@ -1,4 +1,4 @@
-# 🚀 JavaScript Application Template with GitHub Copilot
+# 🌍 為替レート変換計算機
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
@@ -6,19 +6,22 @@
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-> **GitHub Copilot** と **GitHub Coding Agent** を活用したモダンな JavaScript アプリケーション開発のためのテンプレートリポジトリ
+> **モバイル最適化された通貨変換アプリケーション** - リアルタイム変換とローカル設定保存機能
 
 ## 📋 概要
 
-このリポジトリは、AI 駆動開発ツールを使用して効率的な JavaScript アプリケーション開発を実現するための包括的なテンプレートです。最新の Web 技術スタックと開発手法を組み合わせ、迅速なプロトタイピングから本格的なアプリケーション開発まで対応します。
+為替レート変換計算機は、3つの通貨間での金額変換を直感的に行えるWebアプリケーションです。モバイルデバイスでの使いやすさを重視し、リアルタイム変換機能とローカル設定保存機能を提供します。
+
+![Application Screenshot](https://github.com/user-attachments/assets/3e25c815-e386-4cd9-bf91-afbd6959b4c9)
 
 ### ✨ 主な特徴
 
-- 🤖 **AI ファーストな開発体験** - GitHub Copilot & Coding Agent 完全対応
-- ⚡ **ゼロ設定で即座に開始** - ブラウザで直接実行可能
-- 🎨 **モダンな UI/UX** - Tailwind CSS による美しいデザイン
-- 📱 **レスポンシブデザイン** - あらゆるデバイスに対応
-- 🛠️ **開発者フレンドリー** - 明確なコーディング規約とベストプラクティス
+- 📱 **モバイルファースト設計** - タッチ操作に最適化されたUI
+- ⚡ **リアルタイム変換** - 入力と同時に自動計算・表示
+- 💾 **設定の永続化** - ブラウザのlocalStorageに設定を自動保存
+- 🎨 **視覚的識別** - 通貨ごとの色分け表示で直感的操作
+- 🔄 **双方向変換** - どの通貨からでも他通貨への変換が可能
+- 🌐 **オフライン対応** - インターネット接続不要で動作
 
 ## 🛠️ 技術スタック
 
@@ -40,18 +43,20 @@
 ## 📁 プロジェクト構造
 
 ```
-📦 JSApp-Template-001/
-├── 📄 README.md                 # プロジェクト概要
-├── 📄 .github/
-│   └── 📄 copilot-instructions.md  # Copilot 設定
-└── 📁 src/                      # アプリケーションソース
-    ├── 📄 index.html            # メインHTML
-    ├── 📁 css/                  # スタイルシート
-    │   └── 📄 styles.css        # カスタムCSS
-    ├── 📁 js/                   # JavaScript
-    │   └── 📄 script.js         # メインスクリプト
-    └── 📁 assets/               # 静的リソース
-        └── 📁 images/           # 画像ファイル
+📦 exchange-rate-calculator/
+├── 📄 README.md                    # プロジェクト概要
+├── 📄 LICENSE                      # ライセンス
+├── 📁 src/                         # アプリケーションソース
+│   ├── 📄 index.html              # メインHTML
+│   ├── 📄 README.md               # 使用方法詳細
+│   ├── 📁 css/                    # スタイルシート
+│   │   ├── 📄 styles.css          # カスタムCSS
+│   │   └── 📄 fallback.css        # TailwindCSS代替
+│   └── 📁 js/                     # JavaScript
+│       └── 📄 script.js           # メインスクリプト
+└── 📁 docs/                       # ドキュメント
+    ├── 📄 specification.md        # 仕様書
+    └── 📄 implementation.md       # 実装詳細
 ```
 
 ## 🚀 クイックスタート
@@ -59,83 +64,68 @@
 ### 前提条件
 
 - 📌 モダンな Web ブラウザ (Chrome 90+, Firefox 88+, Safari 14+)
-- 📌 Visual Studio Code (推奨)
-- 📌 GitHub Copilot サブスクリプション
+- 📌 JavaScript有効化
+- 📌 localStorage使用可能
 
-### セットアップ手順
+### 実行方法
 
-#### 🤖 GitHub Coding Agent を使用する場合
-
-1. **リポジトリの作成**
-
-   ```bash
-   # このテンプレートから新しいリポジトリを作成
-   gh repo create my-js-app --template JSApp-Template-001
+#### 🌐 最も簡単な方法
+1. **ブラウザで直接開く**
+   ```
+   src/index.html をブラウザで開くだけ！
    ```
 
-2. **Issue の作成と Coding Agent の起動**
-
-   - リポジトリに新しい Issue を作成
-   - 開発要件を詳細に記述
-   - `@copilot` で Coding Agent をアサイン
-
-3. **自動開発プロセス**
-
-   - Coding Agent が要件を分析
-   - 自動的にコードを生成
-   - Pull Request として提案
-
-4. **レビューとデプロイ**
-   - 生成されたコードをレビュー
-   - main ブランチにマージ
-   - GitHub Pages でライブデモを確認
-
-#### 💻 GitHub Copilot Agent Mode (ローカル開発) を使用する場合
-
+#### 💻 ローカルサーバー使用（推奨）
 1. **リポジトリのクローン**
-
    ```bash
-   git clone https://github.com/tokawa-ms/JSApp-Template-001.git
-   cd JSApp-Template-001
+   git clone https://github.com/tokawa-ms/exchange-rate-calculator.git
+   cd exchange-rate-calculator
    ```
 
-2. **開発環境の準備**
-
+2. **ローカルサーバー起動**
    ```bash
-   # Visual Studio Code で開く
-   code .
+   cd src
+   python3 -m http.server 8080
    ```
 
-3. **Copilot の設定**
+3. **ブラウザでアクセス**
+   ```
+   http://localhost:8080
+   ```
 
-   - VS Code で GitHub Copilot 拡張機能を有効化
-   - Agent モードに切り替え
-   - チャットウィンドウを開く
+### 📱 使用方法
 
-4. **開発開始**
-   - 自然言語でプロンプトを入力
-   - Copilot の提案を確認・適用
-   - ブラウザで `src/index.html` を開いて動作確認
+#### ステップ1: 初期設定
+1. 「初期設定」パネルを開く
+2. 自国通貨コードを入力（例：JPY）
+3. 変換対象通貨とレートを設定（例：NTD 4.5, USD 0.0067）
+4. 「設定を保存」をクリック
 
-## 💡 使用例とサンプルプロンプト
+#### ステップ2: 通貨変換
+1. いずれかの通貨フィールドに金額を入力
+2. 他の通貨フィールドに自動変換結果が表示
+3. 必要に応じて「すべてクリア」でリセット
 
-### 基本的なアプリケーション作成
+## 💡 機能詳細
 
-```
-「ToDoリストアプリを作成してください。追加、削除、完了マークの機能を含めてください。」
-```
+### 🔧 初期設定機能
+- **自国通貨設定**: 基準となる通貨コード（デフォルト: JPY）
+- **対象通貨1設定**: 第1変換対象通貨とレート（デフォルト: NTD）
+- **対象通貨2設定**: 第2変換対象通貨とレート（デフォルト: USD）
+- **設定保存**: ブラウザのlocalStorageに自動保存
+- **入力検証**: 通貨コード3文字、正数値、重複チェック
 
-### インタラクティブな機能追加
+### ⚡ リアルタイム変換機能
+- **双方向変換**: どの通貨からでも他通貨への変換
+- **自動計算**: 入力と同時に即座に変換結果を表示
+- **精密計算**: 小数点以下2桁の正確な計算
+- **一括クリア**: 全入力フィールドの同時リセット
 
-```
-「現在の天気情報を表示するウィジェットを追加してください。API キーは設定画面で入力できるようにしてください。」
-```
-
-### UI/UX の改善
-
-```
-「Tailwind CSS を使用してダークモード対応のモダンなデザインに変更してください。」
-```
+### 📱 モバイル最適化
+- **タッチフレンドリー**: 指での操作に適したボタンサイズ
+- **レスポンシブ**: 320px〜の画面幅に対応
+- **色分け表示**: 通貨別の視覚的識別
+- **スムーズアニメーション**: 60fpsの滑らかなUI
 
 ## 📱 レスポンシブデザイン対応
 
@@ -175,19 +165,28 @@
 
 ## 🆘 サポートとリソース
 
-- 📖 **ドキュメント**: [GitHub Copilot Docs](https://docs.github.com/en/copilot)
-- 💬 **コミュニティ**: [GitHub Discussions](https://github.com/github/copilot-docs/discussions)
-- 🐛 **Issue 報告**: [Issues](https://github.com/tokawa-ms/JSApp-Template-001/issues)
+- 📖 **ドキュメント**: [仕様書](docs/specification.md) | [実装詳細](docs/implementation.md)
+- 💬 **使用方法**: [詳細ガイド](src/README.md)
+- 🐛 **Issue 報告**: [Issues](https://github.com/tokawa-ms/exchange-rate-calculator/issues)
+- 💡 **機能要望**: [新機能リクエスト](https://github.com/tokawa-ms/exchange-rate-calculator/issues/new)
 
 ## 📊 プロジェクト統計
 
-![GitHub stars](https://img.shields.io/github/stars/tokawa-ms/JSApp-Template-001?style=social)
-![GitHub forks](https://img.shields.io/github/forks/tokawa-ms/JSApp-Template-001?style=social)
-![GitHub issues](https://img.shields.io/github/issues/tokawa-ms/JSApp-Template-001)
+![GitHub stars](https://img.shields.io/github/stars/tokawa-ms/exchange-rate-calculator?style=social)
+![GitHub forks](https://img.shields.io/github/forks/tokawa-ms/exchange-rate-calculator?style=social)
+![GitHub issues](https://img.shields.io/github/issues/tokawa-ms/exchange-rate-calculator)
+
+## 🔮 今後の拡張予定
+
+- 🌐 **為替レートAPI連携**: リアルタイムレート取得
+- 📊 **変換履歴**: 過去の変換記録表示
+- 🎨 **ダークモード**: テーマ切り替え機能
+- 🌍 **多通貨対応**: 4通貨以上への拡張
+- 📤 **データエクスポート**: CSV出力機能
 
 ---
 
 <div align="center">
-  <strong>🚀 Happy Coding with AI! 🤖</strong><br>
-  Made with ❤️ and GitHub Copilot
+  <strong>🌍 Happy Currency Converting! 💱</strong><br>
+  Made with ❤️ and GitHub Copilot AI
 </div>
